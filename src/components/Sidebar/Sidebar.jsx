@@ -38,7 +38,9 @@ const Sidebar = () => {
 					<li className="mt-4">
 						<NavLink
 							to="/add-task"
-							className={({ isActive }) => (isActive ? 'bg-sky-300' : '')}>
+							className={({ isActive }) =>
+								isActive ? 'block bg-sky-300' : ''
+							}>
 							Add New Task
 						</NavLink>
 					</li>
