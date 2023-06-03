@@ -5,11 +5,10 @@ export const FetchContext = createContext(null);
 const FetchProvider = ({ children }) => {
 	const BASE_URL = 'http://localhost:5000';
 
-	const [isLoading, setIsLoading] = useState(false);
+	const [updated, setUpdated] = useState(false);
 
 	// add new task to db
 	const addNewTask = async (data) => {
-		setIsLoading(true);
 		return fetch(`${BASE_URL}/new-task`, {
 			method: 'POST',
 			headers: {
@@ -21,13 +20,11 @@ const FetchProvider = ({ children }) => {
 
 	// get all tasks data
 	const getAllTasks = async () => {
-		setIsLoading(true);
 		return fetch(`${BASE_URL}/all-tasks`).then((res) => res.json());
 	};
 
 	// get tasks by category
 	const filteredTasks = async (category) => {
-		setIsLoading(true);
 		return fetch(`${BASE_URL}/tasks?filter=${category}`).then((res) =>
 			res.json()
 		);
@@ -35,8 +32,8 @@ const FetchProvider = ({ children }) => {
 
 	const fetchInfo = {
 		BASE_URL,
-		isLoading,
-		setIsLoading,
+		updated,
+		setUpdated,
 		addNewTask,
 		getAllTasks,
 		filteredTasks,

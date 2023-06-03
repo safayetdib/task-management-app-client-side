@@ -6,7 +6,7 @@ const Home = () => {
 	const [pendingTasks, setPendingTasks] = useState([]);
 	const [inProgressTasks, setInProgressTasks] = useState([]);
 	const [completedTasks, setCompletedTasks] = useState([]);
-	const { getAllTasks } = useContext(FetchContext);
+	const { updated, getAllTasks } = useContext(FetchContext);
 
 	useEffect(() => {
 		getAllTasks().then((data) => {
@@ -15,7 +15,7 @@ const Home = () => {
 			setInProgressTasks(data.filter((task) => task.status === 'In Progress'));
 			setCompletedTasks(data.filter((task) => task.status === 'Completed'));
 		});
-	}, []);
+	}, [updated]);
 
 	return (
 		<div className="flex flex-col justify-between gap-4 px-4 md:flex-row">
