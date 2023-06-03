@@ -1,12 +1,12 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { FetchContext } from '../../Context/fetchProvider';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const AddNewTask = () => {
-	const [error, setError] = useState(false);
-
 	const { addNewTask } = useContext(FetchContext);
+	const navigate = useNavigate();
 
 	const {
 		register,
@@ -15,26 +15,25 @@ const AddNewTask = () => {
 		formState: { errors },
 	} = useForm();
 	const onSubmit = (data) => {
-		console.log(data);
-
-		addNewTask(data)
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-				if (data.insertedId) {
-					Swal.fire('Saved!', '', 'success');
-				} else {
-					Swal.fire({
-						icon: 'error',
-						title: 'Oops...',
-						text: 'Something went wrong!',
-					});
-				}
-			});
+		addNewTask(data).then((data) => {
+			console.log(data);
+			if (data.insertedId) {
+				// toast.success('Successfully added!');
+				Swal.fire('Successfully added', '', 'success');
+				navigate('/');
+			} else {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Something went wrong! Please try again later.',
+				});
+			}
+		});
 
 		reset();
 	};
-	console.log(errors);
+
+	console.log(errors?.title?.type);
 
 	return (
 		<div>
