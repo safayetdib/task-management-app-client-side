@@ -1,12 +1,12 @@
 const TaskCard = ({ task }) => {
 	return (
-		<li className="max-w-xs rounded-lg border">
-			<div className="flex  items-start justify-between p-2">
+		<li className="max-w-lg rounded-lg border">
+			<div className="flex items-start justify-between p-2">
 				<div className="space-y-2">
 					<h4 className="font-semibold text-gray-800">{task.title}</h4>
 					<p className="text-sm text-gray-600">{task.description}</p>
 				</div>
-				<p className="rounded-lg border bg-gray-100 px-3 py-2 text-sm text-gray-800 duration-150">
+				<p className="rounded-lg border bg-gray-100 px-3 py-2 text-xs text-gray-800 duration-150">
 					{task.status}
 				</p>
 			</div>
