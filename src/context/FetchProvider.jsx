@@ -1,17 +1,15 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
 export const FetchContext = createContext(null);
 
 const FetchProvider = ({ children }) => {
 	const BASE_URL = 'http://localhost:5000';
 
-	// get all tasks data
-	const getAllTasks = async () => {
-		return fetch(`${BASE_URL}/all-tasks`).then((res) => res.json());
-	};
+	const [isLoading, setIsLoading] = useState(false);
 
 	// add new task to db
 	const addNewTask = async (data) => {
+		setIsLoading(true);
 		return fetch(`${BASE_URL}/new-task`, {
 			method: 'POST',
 			headers: {
@@ -21,10 +19,27 @@ const FetchProvider = ({ children }) => {
 		}).then((res) => res.json());
 	};
 
+	// get all tasks data
+	const getAllTasks = async () => {
+		setIsLoading(true);
+		return fetch(`${BASE_URL}/all-tasks`).then((res) => res.json());
+	};
+
+	// get tasks by category
+	const filteredTasks = async (category) => {
+		setIsLoading(true);
+		return fetch(`${BASE_URL}/tasks?filter=${category}`).then((res) =>
+			res.json()
+		);
+	};
+
 	const fetchInfo = {
 		BASE_URL,
-		getAllTasks,
+		isLoading,
+		setIsLoading,
 		addNewTask,
+		getAllTasks,
+		filteredTasks,
 	};
 
 	return (

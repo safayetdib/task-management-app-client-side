@@ -10,6 +10,7 @@ const Home = () => {
 
 	useEffect(() => {
 		getAllTasks().then((data) => {
+			console.log(data);
 			setPendingTasks(data.filter((task) => task.status === 'Pending'));
 			setInProgressTasks(data.filter((task) => task.status === 'In Progress'));
 			setCompletedTasks(data.filter((task) => task.status === 'Completed'));

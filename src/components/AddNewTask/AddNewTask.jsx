@@ -66,7 +66,9 @@ const AddNewTask = () => {
 						<select
 							{...register('status', { required: true })}
 							className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600">
-							<option name="new">New</option>
+							<option name="new" value="Pending">
+								New
+							</option>
 							<option name="progress">In Progress</option>
 							<option name="completed">Completed</option>
 						</select>
