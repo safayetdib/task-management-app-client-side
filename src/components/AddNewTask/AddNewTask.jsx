@@ -18,14 +18,20 @@ const AddNewTask = () => {
 		addNewTask(data).then((data) => {
 			console.log(data);
 			if (data.insertedId) {
-				// toast.success('Successfully added!');
-				Swal.fire('Successfully added', '', 'success');
+				Swal.fire({
+					icon: 'success',
+					title: 'Successfully added!',
+					text: '',
+					confirmButtonColor: '#202020',
+				});
+
 				navigate('/');
 			} else {
 				Swal.fire({
 					icon: 'error',
 					title: 'Oops...',
 					text: 'Something went wrong! Please try again later.',
+					confirmButtonColor: '#202020',
 				});
 			}
 		});
@@ -36,15 +42,15 @@ const AddNewTask = () => {
 	console.log(errors?.title?.type);
 
 	return (
-		<div>
-			<div className="mx-auto mt-8 flex max-w-lg flex-col gap-4 rounded-md bg-gray-100 p-4">
+		<div className="flex min-h-screen items-center justify-center">
+			<div className="mx-auto w-full max-w-lg rounded-md border bg-white p-4 shadow-lg">
 				<h2 className="mb-4 text-center text-2xl font-bold text-gray-800">
 					Add new task
 				</h2>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					{/* title */}
 					<div>
-						<label className="font-medium">Title</label>
+						<label className="font-medium text-gray-500">Title*</label>
 						<input
 							type="text"
 							{...register('title', { required: true, maxLength: 120 })}
@@ -53,8 +59,8 @@ const AddNewTask = () => {
 						/>
 					</div>
 					{/* description */}
-					<div>
-						<label className="font-medium">Description</label>
+					<div className="my-4">
+						<label className="font-medium text-gray-500">Description*</label>
 						<textarea
 							name="description"
 							{...register('description', { required: true })}
@@ -62,7 +68,7 @@ const AddNewTask = () => {
 					</div>
 					{/* status */}
 					<div>
-						<label className="font-medium">Status</label>
+						<label className="font-medium text-gray-500">Status</label>
 						<select
 							{...register('status', { required: true })}
 							className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600">
@@ -75,7 +81,7 @@ const AddNewTask = () => {
 					</div>
 
 					{/* add task button */}
-					<button className="mt-8 w-full rounded-lg bg-indigo-600 px-4 py-2 font-medium uppercase text-white duration-150 hover:bg-indigo-500 active:bg-indigo-600">
+					<button className="mt-8 w-full rounded-lg border bg-gray-700 p-3 text-sm font-bold uppercase text-gray-100 duration-150 hover:bg-gray-600 active:bg-gray-800">
 						Add
 					</button>
 				</form>

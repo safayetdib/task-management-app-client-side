@@ -1,9 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { FetchContext } from '../../Context/fetchProvider';
+import UpdateTask from '../UpdateTask/UpdateTask';
 
 const TaskCard = ({ task }) => {
-	const { updated, setUpdated } = useContext(FetchContext);
+	const { updated, setUpdated, deleteTask } = useContext(FetchContext);
+
+	const [isOpen, setIsOpen] = useState(false);
+
+	const handleUpdate = () => {
+		setIsOpen(true);
+	};
 
 	const handleDelete = (id) => {
 		Swal.fire({
@@ -11,22 +18,18 @@ const TaskCard = ({ task }) => {
 			text: "You won't be able to revert this!",
 			icon: 'warning',
 			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
+			confirmButtonColor: '#202020',
+			cancelButtonColor: '#505050',
 			confirmButtonText: 'Yes, delete it!',
 		}).then((result) => {
 			if (result.isConfirmed) {
-				fetch(`http://localhost:5000/task/${id}`, {
-					method: 'DELETE',
-				})
-					.then((res) => res.json())
-					.then((data) => {
-						console.log(data);
-						if (data.deletedCount > 0) {
-							setUpdated(!updated);
-							Swal.fire('Deleted!', 'Your task has been deleted.', 'success');
-						}
-					});
+				deleteTask(id).then((data) => {
+					console.log(data);
+					if (data.deletedCount > 0) {
+						setUpdated(!updated);
+						Swal.fire('Deleted!', 'Your task has been deleted.', 'success');
+					}
+				});
 			}
 		});
 	};
@@ -43,7 +46,9 @@ const TaskCard = ({ task }) => {
 				</p>
 			</div>
 			<div className="flex items-center justify-end gap-4 border-t bg-gray-100 p-2">
-				<button className="w-full rounded-lg border bg-gray-700 px-3 py-2 text-sm text-gray-100 duration-150 hover:bg-gray-600 active:bg-gray-800">
+				<button
+					onClick={() => handleUpdate()}
+					className="w-full rounded-lg border bg-gray-700 px-3 py-2 text-sm text-gray-100 duration-150 hover:bg-gray-600 active:bg-gray-800">
 					Update
 				</button>
 				<button
@@ -52,6 +57,8 @@ const TaskCard = ({ task }) => {
 					Delete
 				</button>
 			</div>
+
+			{isOpen && <UpdateTask setIsOpen={setIsOpen} task={task} />}
 		</li>
 	);
 };

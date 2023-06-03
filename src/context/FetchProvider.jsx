@@ -30,6 +30,24 @@ const FetchProvider = ({ children }) => {
 		);
 	};
 
+	// update a task
+	const updateTask = async (id, data) => {
+		return fetch(`${BASE_URL}/task/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		}).then((res) => res.json());
+	};
+
+	// delete a task
+	const deleteTask = async (id) => {
+		return fetch(`${BASE_URL}/task/${id}`, {
+			method: 'DELETE',
+		}).then((res) => res.json());
+	};
+
 	const fetchInfo = {
 		BASE_URL,
 		updated,
@@ -37,6 +55,8 @@ const FetchProvider = ({ children }) => {
 		addNewTask,
 		getAllTasks,
 		filteredTasks,
+		updateTask,
+		deleteTask,
 	};
 
 	return (
