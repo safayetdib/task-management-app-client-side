@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FetchContext } from '../../Context/fetchProvider';
+import Swal from 'sweetalert2';
 
 const AddNewTask = () => {
 	const [error, setError] = useState(false);
@@ -21,9 +22,13 @@ const AddNewTask = () => {
 			.then((data) => {
 				console.log(data);
 				if (data.insertedId) {
-					setError(false);
+					Swal.fire('Saved!', '', 'success');
 				} else {
-					setError(true);
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: 'Something went wrong!',
+					});
 				}
 			});
 
