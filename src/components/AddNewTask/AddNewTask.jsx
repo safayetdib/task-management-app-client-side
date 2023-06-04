@@ -53,7 +53,7 @@ const AddNewTask = () => {
 						<label className="font-medium text-gray-500">Title*</label>
 						<input
 							type="text"
-							{...register('title', { required: true, maxLength: 120 })}
+							{...register('title', { required: true })}
 							required
 							className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
 						/>
