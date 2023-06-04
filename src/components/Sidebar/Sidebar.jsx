@@ -2,26 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { FaTasks } from 'react-icons/fa';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 
-const Sidebar = () => {
-	const navLinks = [
-		{
-			title: 'All Tasks',
-			path: '/',
-		},
-		{
-			title: 'Pending',
-			path: '/pending',
-		},
-		{
-			title: 'In Progress',
-			path: '/in-progress',
-		},
-		{
-			title: 'Completed',
-			path: '/completed',
-		},
-	];
-
+const Sidebar = ({ navLinks }) => {
 	const active =
 		'block bg-gray-700 text-gray-100 py-2 px-4 rounded-l-lg shadow-lg';
 	const pending = 'block bg-gray-100 text-gray-700 py-2 px-4 rounded-l-lg';

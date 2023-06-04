@@ -18,11 +18,11 @@ const Home = () => {
 	}, [updated]);
 
 	return (
-		<div className="flex flex-col justify-between gap-4 px-4 md:flex-row">
+		<div className="flex flex-col justify-between gap-4 px-4 lg:flex-row">
 			{/* pending tasks */}
 			<div className="mt-6 w-full">
 				<h3 className="text-xl font-bold">Pending</h3>
-				<ul className="mt-4 grid w-full gap-4">
+				<ul className="mt-4 grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-1">
 					{pendingTasks.map((task) => (
 						<TaskCard key={task._id} task={task} />
 					))}
@@ -32,7 +32,7 @@ const Home = () => {
 			{/* in progress tasks */}
 			<div className="mt-6 w-full">
 				<h3 className="text-xl font-bold">In Progress</h3>
-				<ul className="mt-4 grid gap-4">
+				<ul className="mt-4 grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-1">
 					{inProgressTasks.map((task) => (
 						<TaskCard key={task._id} task={task} />
 					))}
@@ -42,7 +42,7 @@ const Home = () => {
 			{/* completed tasks */}
 			<div className="mt-6 w-full">
 				<h3 className="text-xl font-bold">Completed</h3>
-				<ul className="mt-4 grid gap-4">
+				<ul className="mt-4 grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-1">
 					{completedTasks.map((task) => (
 						<TaskCard key={task._id} task={task} />
 					))}
