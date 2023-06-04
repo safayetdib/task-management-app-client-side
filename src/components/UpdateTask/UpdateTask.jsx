@@ -12,7 +12,8 @@ const UpdateTask = ({ setIsOpen, task }) => {
 		setIsOpen(false);
 	};
 
-	const { updated, setUpdated, updateTask } = useContext(FetchContext);
+	const { updated, setUpdated, isLoading, setIsLoading, updateTask } =
+		useContext(FetchContext);
 
 	const {
 		register,
@@ -39,9 +40,16 @@ const UpdateTask = ({ setIsOpen, task }) => {
 					confirmButtonColor: '#202020',
 				});
 			}
+			setIsLoading(false);
 		});
-
 		reset();
+		if (!isLoading) {
+			return (
+				<div className="flex h-screen items-center justify-center">
+					<div className="h-16 w-16 animate-spin rounded-full border-4 border-dashed border-gray-500"></div>
+				</div>
+			);
+		}
 	};
 
 	console.log(errors?.title?.type);

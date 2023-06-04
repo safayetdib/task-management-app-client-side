@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { FetchContext } from '../../Context/fetchProvider';
 import UpdateTask from '../UpdateTask/UpdateTask';
 import { IoCheckmarkDoneOutline } from 'react-icons/io5';
+import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 
 const TaskCard = ({ task }) => {
 	const { updated, setUpdated, updateTask, deleteTask } =
@@ -69,7 +70,7 @@ const TaskCard = ({ task }) => {
 	};
 
 	return (
-		<li className="max-w-lg rounded-lg border">
+		<li className="max-w-lg rounded-lg border shadow">
 			<div className="flex items-start justify-between p-2">
 				<div className="space-y-2">
 					<h4 className="font-semibold text-gray-800">{task.title}</h4>
@@ -95,13 +96,13 @@ const TaskCard = ({ task }) => {
 			<div className="flex items-center justify-end gap-4 border-t bg-gray-100 p-2">
 				<button
 					onClick={() => handleUpdate()}
-					className="w-full rounded-lg border bg-gray-700 px-3 py-2 text-sm text-gray-100 duration-150 hover:bg-gray-600 active:bg-gray-800">
-					Edit
+					className="flex w-full items-center justify-center gap-2 rounded-lg border bg-gray-700 px-3 py-2 text-xs text-gray-100 duration-150 hover:bg-gray-600 active:bg-gray-800">
+					<AiOutlineEdit className="text-sm" /> Edit
 				</button>
 				<button
 					onClick={() => handleDelete(task._id)}
-					className="w-full rounded-lg border bg-gray-700 px-3 py-2 text-sm text-gray-100 duration-150 hover:bg-gray-600 active:bg-gray-800">
-					Delete
+					className="flex w-full items-center justify-center gap-2 rounded-lg border bg-gray-700 px-3 py-2 text-xs text-gray-100 duration-150 hover:bg-gray-600 active:bg-gray-800">
+					<AiOutlineDelete className="text-sm" /> Delete
 				</button>
 			</div>
 

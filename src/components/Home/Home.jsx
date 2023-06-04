@@ -6,16 +6,25 @@ const Home = () => {
 	const [pendingTasks, setPendingTasks] = useState([]);
 	const [inProgressTasks, setInProgressTasks] = useState([]);
 	const [completedTasks, setCompletedTasks] = useState([]);
-	const { updated, getAllTasks } = useContext(FetchContext);
+	const { isLoading, setIsLoading, updated, getAllTasks } =
+		useContext(FetchContext);
 
 	useEffect(() => {
 		getAllTasks().then((data) => {
-			console.log(data);
 			setPendingTasks(data.filter((task) => task.status === 'Pending'));
 			setInProgressTasks(data.filter((task) => task.status === 'In Progress'));
 			setCompletedTasks(data.filter((task) => task.status === 'Completed'));
+			setIsLoading(false);
 		});
 	}, [updated]);
+
+	if (isLoading) {
+		return (
+			<div className="flex h-screen items-center justify-center">
+				<div className="h-16 w-16 animate-spin rounded-full border-4 border-dashed border-gray-500"></div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="flex flex-col justify-between gap-4 px-4 lg:flex-row">
