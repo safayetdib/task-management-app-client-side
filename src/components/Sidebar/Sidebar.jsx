@@ -9,9 +9,9 @@ const Sidebar = ({ navLinks }) => {
 
 	return (
 		<div>
-			<div className="flex items-center justify-center gap-2 bg-gray-100 p-4 text-xl font-bold text-gray-800">
+			<div className="flex items-center gap-2 bg-gray-100 p-6 text-xl font-bold text-gray-800">
 				<FaTasks />
-				<h2>React Task Manager</h2>
+				<h2 className="text-lg">React Task Manager</h2>
 			</div>
 
 			<div className="mt-8">
@@ -37,14 +37,6 @@ const Sidebar = ({ navLinks }) => {
 							</NavLink>
 						</li>
 					))}
-
-					{/* <li className="mt-4">
-						<NavLink
-							to="/add-task"
-							className={({ isActive }) => (isActive ? active : pending)}>
-							Add New Task
-						</NavLink>
-					</li> */}
 				</ul>
 			</nav>
 		</div>

@@ -16,7 +16,7 @@ const CompletedTasks = () => {
 		<div className="mt-6 flex w-full flex-col items-center justify-center px-4">
 			<h3 className="text-xl font-bold">Completed Tasks</h3>
 			{completedTasks.length ? (
-				<ul className="mt-4 grid w-full grid-cols-1 gap-4 md:grid-cols-2  md:flex-row lg:grid-cols-3">
+				<ul className="mt-4 grid w-full grid-cols-1 gap-4 sm:grid-cols-2  md:flex-row lg:grid-cols-3">
 					{completedTasks.map((task) => (
 						<TaskCard key={task._id} task={task} />
 					))}

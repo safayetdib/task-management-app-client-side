@@ -20,32 +20,48 @@ const Home = () => {
 	return (
 		<div className="flex flex-col justify-between gap-4 px-4 lg:flex-row">
 			{/* pending tasks */}
-			<div className="mt-6 w-full">
-				<h3 className="text-xl font-bold">Pending</h3>
+			<div className="w-full">
+				<h3 className="border-b p-6 text-xl font-bold">Pending</h3>
 				<ul className="mt-4 grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-1">
-					{pendingTasks.map((task) => (
-						<TaskCard key={task._id} task={task} />
-					))}
+					{pendingTasks.length ? (
+						pendingTasks.map((task) => <TaskCard key={task._id} task={task} />)
+					) : (
+						<div className="px-6">
+							<h4>No Pending Task Found!</h4>
+						</div>
+					)}
 				</ul>
 			</div>
 
 			{/* in progress tasks */}
-			<div className="mt-6 w-full">
-				<h3 className="text-xl font-bold">In Progress</h3>
+			<div className="w-full">
+				<h3 className="border-b p-6 text-xl font-bold">In Progress</h3>
 				<ul className="mt-4 grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-1">
-					{inProgressTasks.map((task) => (
-						<TaskCard key={task._id} task={task} />
-					))}
+					{inProgressTasks.length ? (
+						inProgressTasks.map((task) => (
+							<TaskCard key={task._id} task={task} />
+						))
+					) : (
+						<div className="px-6">
+							<h4>No Task In Progress Found!</h4>
+						</div>
+					)}
 				</ul>
 			</div>
 
 			{/* completed tasks */}
-			<div className="mt-6 w-full">
-				<h3 className="text-xl font-bold">Completed</h3>
+			<div className="w-full">
+				<h3 className="border-b p-6 text-xl font-bold">Completed</h3>
 				<ul className="mt-4 grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-1">
-					{completedTasks.map((task) => (
-						<TaskCard key={task._id} task={task} />
-					))}
+					{completedTasks.length ? (
+						completedTasks.map((task) => (
+							<TaskCard key={task._id} task={task} />
+						))
+					) : (
+						<div className="px-6">
+							<h4>No Completed Task Found!</h4>
+						</div>
+					)}
 				</ul>
 			</div>
 		</div>

@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { FetchContext } from '../../Context/fetchProvider';
 import UpdateTask from '../UpdateTask/UpdateTask';
+import { IoCheckmarkDoneOutline } from 'react-icons/io5';
 
 const TaskCard = ({ task }) => {
 	const { updated, setUpdated, updateTask, deleteTask } =
@@ -82,7 +83,13 @@ const TaskCard = ({ task }) => {
 							? ''
 							: 'border hover:bg-gray-50 active:bg-gray-200'
 					}`}>
-					{task.status === 'Completed' ? 'Completed' : 'Mark as Completed'}
+					{task.status === 'Completed' ? (
+						<span className="flex items-center gap-1">
+							<IoCheckmarkDoneOutline /> Completed
+						</span>
+					) : (
+						'Mark as Completed'
+					)}
 				</button>
 			</div>
 			<div className="flex items-center justify-end gap-4 border-t bg-gray-100 p-2">

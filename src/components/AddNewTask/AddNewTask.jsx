@@ -42,8 +42,8 @@ const AddNewTask = () => {
 	console.log(errors?.title?.type);
 
 	return (
-		<div className="flex min-h-screen items-center justify-center">
-			<div className="mx-auto w-full max-w-lg rounded-md border bg-white p-4 shadow-lg">
+		<div className="flex min-h-screen p-4 sm:items-center">
+			<div className="mx-auto h-fit w-full max-w-lg rounded-md border bg-white p-4 shadow-lg">
 				<h2 className="mb-4 text-center text-2xl font-bold text-gray-800">
 					Add new task
 				</h2>

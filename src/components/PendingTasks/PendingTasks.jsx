@@ -16,7 +16,7 @@ const PendingTasks = () => {
 		<div className="mt-6 flex w-full flex-col items-center justify-center px-4">
 			<h3 className="text-xl font-bold">Pending</h3>
 			{pendingTasks.length ? (
-				<ul className="mt-4 grid w-full grid-cols-1 gap-4 md:grid-cols-2  md:flex-row lg:grid-cols-3">
+				<ul className="mt-4 grid w-full grid-cols-1 gap-4 sm:grid-cols-2  md:flex-row lg:grid-cols-3">
 					{pendingTasks.map((task) => (
 						<TaskCard key={task._id} task={task} />
 					))}
