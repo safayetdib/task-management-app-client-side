@@ -3,7 +3,7 @@ import { createContext, useState } from 'react';
 export const FetchContext = createContext(null);
 
 const FetchProvider = ({ children }) => {
-	const BASE_URL = 'http://localhost:5000';
+	const BASE_URL = 'https://task-management-app-server-side.vercel.app';
 
 	const [updated, setUpdated] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
